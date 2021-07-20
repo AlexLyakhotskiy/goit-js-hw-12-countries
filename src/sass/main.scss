@@ -1,0 +1,62 @@
+body {
+  color: black;
+  font-family: sans-serif;
+  font-size: 25px;
+}
+
+.container {
+  padding: 20px 15px;
+  margin: 0 auto;
+}
+
+.input {
+  padding: 5px;
+  width: 100%;
+}
+
+.input-wrapper {
+  max-width: 768px;
+  margin: 0 auto;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.countre-title {
+  text-align: center;
+  margin-bottom: 15px;
+  font-size: 40px;
+}
+
+.capital-title,
+.population {
+  margin-bottom: 20px;
+}
+
+.languages-title {
+  font-size: inherit;
+}
+
+.language-item:not(:last-child) {
+  margin-bottom: 15px;
+}
+
+.countre-flag {
+  width: 300px;
+}
+
+.countries-item:not(:last-child) {
+  margin-bottom: 10px;
+}
+
+.countries-list {
+  margin-left: 30%;
+}
+
+span {
+  font-weight: bold;
+}
