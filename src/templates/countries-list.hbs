@@ -1,3 +1,5 @@
-{{#each this}}
-  <li class='countries-item'>{{name}}</li>
-{{/each}}
+<ul class='countries-list'>
+  {{#each this}}
+    <li class='countries-item' data-index='{{@index}}'>{{name}}</li>
+  {{/each}}
+</ul>
