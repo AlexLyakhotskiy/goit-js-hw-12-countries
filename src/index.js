@@ -5,11 +5,11 @@ import { error } from '@pnotify/core';
 import '@pnotify/core/dist/PNotify.css';
 import '@pnotify/core/dist/BrightTheme.css';
 
-import countryTpl from './templates/country.hbs';
-import countriesListTpl from './templates/countries-list.hbs';
+import { fetchCountries } from './fetch';
+import { renderCountry, renderCountriesList, renderCountryFromList } from './renderCountry';
 
 const inputEl = document.querySelector('[data-action="input"]');
-const countryContainerEl = document.querySelector('#country-container');
+export const countryContainerEl = document.querySelector('#country-container');
 
 inputEl.addEventListener('input', debounce(onInputInject, 500));
 
@@ -18,18 +18,8 @@ function onInputInject({ target: { value } }) {
   if (!value.trim().length) {
     return;
   }
-  fetchCountries(value.trim());
-}
 
-function fetchCountries(value) {
-  fetch(`https://restcountries.eu/rest/v2/name/${value}`)
-    .then(r => r.json())
-    .then(data => findQuatityCountries(data))
-    .catch(e => {
-      error({
-        text: `${e}`,
-      });
-    });
+  fetchCountries(value.trim()).then(data => findQuatityCountries(data));
 }
 
 function findQuatityCountries(data) {
@@ -53,22 +43,4 @@ function findQuatityCountries(data) {
       text: 'Nothing matches found.',
     });
   }
-}
-
-function renderCountry(data) {
-  countryContainerEl.insertAdjacentHTML('beforeend', countryTpl(data));
-}
-
-function renderCountriesList(data) {
-  countryContainerEl.insertAdjacentHTML('beforeend', countriesListTpl(data));
-}
-
-function renderCountryFromList(data) {
-  document.querySelector('.countries-list').addEventListener('click', e => {
-    if (!e.target.classList.contains('countries-item')) {
-      retrun;
-    }
-    countryContainerEl.innerHTML = '';
-    renderCountry([data[e.target.dataset.index]]);
-  });
 }
