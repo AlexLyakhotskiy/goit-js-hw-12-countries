@@ -21,7 +21,7 @@ function onInputInject({ target: { value } }) {
   fetchCountries(value.trim());
 }
 
-export function fetchCountries(value) {
+function fetchCountries(value) {
   fetch(`https://restcountries.eu/rest/v2/name/${value}`)
     .then(r => r.json())
     .then(data => findQuatityCountries(data))
